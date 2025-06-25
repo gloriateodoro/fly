@@ -1,4 +1,4 @@
-# 🚀 Desafio de Codificação (Seu Turno!)
+# 🚀 Desafio de Codificação (Mãos à obra!)
 
 Vocês precisam completar o arquivo `script.js` para que a calculadora funcione:
 
