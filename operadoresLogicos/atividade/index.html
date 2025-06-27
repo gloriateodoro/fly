@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Operadores Lógicos em JS</title>
+  <style>
+    img {
+      width: 300px;
+      margin-top: 20px;
+    }
+  </style>
+  <script src="script.js"></script>
+</head>
+<body>
+  <h2>Previsão de Hoje:</h2>
+
+  <button onclick="mostrarImagem(true, true)">Sol e Guarda-chuva</button>
+  <button onclick="mostrarImagem(true, false)">Sol apenas</button>
+  <button onclick="mostrarImagem(false, true)">Guarda-chuva apenas</button>
+  <button onclick="mostrarImagem(false, false)">Sem sol e sem guarda-chuva</button>
+
+  <div id="resultado"></div>
+</body>
+</html>
