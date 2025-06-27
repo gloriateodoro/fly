@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Árvore DOM na prática</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    .container {
+      border: 2px solid #4caf50;
+      padding: 20px;
+      margin: 10px;
+    }
+    .info {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="pai">
+    <h2 id="titulo">Título da Página</h2>
+    <p id="paragrafo">Este é um parágrafo.</p>
+    <button onclick="explorarDOM()">Explorar DOM</button>
+  </div>
+
+  <div class="info" id="saida"></div>
+
+  <script>
+    function explorarDOM() {
+      const titulo = document.getElementById("titulo");
+      const paragrafo = document.getElementById("paragrafo");
+
+      const paiDoTitulo = titulo.parentNode;
+      const filhosDoPai = paiDoTitulo.children;
+      const irmaoDoTitulo = titulo.nextElementSibling;
+      const irmaoDoParagrafo = paragrafo.previousElementSibling;
+
+      const saida = document.getElementById("saida");
+      saida.innerHTML = `
+      <strong>Explorando o DOM:</strong><br><br>
+      <p>👨‍👧‍👦 Pai do título: ${paiDoTitulo.tagName.toLowerCase()}</p>
+      <p>👶 Filhos do pai: ${[...filhosDoPai].map(elemento => elemento.tagName).join(", ")}</p>
+      <p>👥 Irmão do título: ${irmaoDoTitulo.tagName.toLowerCase()}</p>
+      <p>👥 Irmão do parágrafo: ${irmaoDoParagrafo.tagName.toLowerCase()}</p>
+      `
+    }
+  </script>
+</body>
+</html>

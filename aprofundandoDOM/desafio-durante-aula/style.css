@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 50px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #444;
+    color: white;
+  }
+
+  .light-mode {
+    background-color: #f6f6f6;
+    color: #000000;
+  }
+
+  .dark-mode {
+    background-color: #121212;
+    color: #f2f2f2;
+  }
+
+  .dark-mode button {
+    background-color: #ddd;
+    color: #000;
+  }
+  
+
