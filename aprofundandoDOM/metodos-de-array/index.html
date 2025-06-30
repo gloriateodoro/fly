@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #productList {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: auto;
+            max-width: 500px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            min-width: 300px;
+        }
+
+        .product-item {
+            border-bottom: 1px solid #eee;
+            padding: 0.5rem 0;
+        }
+
+        .total {
+            font-weight: bold;
+            color: #35811c;
+            margin-top: 1rem;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Produtos Disponíveis</h1>
+
+    <div id="container">
+        <input type="text" id="nome-produto" placeholder="Nome do produto">
+        <input type="number" id="preco-produto" placeholder="Preço" min="0">
+        <label>
+            <input type="checkbox" id="em-estoque-produto" placeholder="Em estoque"> Em estoque
+        </label>
+        <button onclick="adicionarProduto()">Cadastrar produto</button>
+
+        <div id="productList"></div>
+        <select name="produtos" id="selecionar-produtos" onchange="filtrarProdutos()">
+            <option value="">Selecione um filtro</option>
+            <option value="todos">Todos</option>
+            <option value="emEstoque">Em estoque</option>
+            <option value="foraEstoque">Fora de estoque</option>
+        </select>
+    </div>
+
+    <script>
+        const produtos = [
+            { nome: "Camisa", preco: 80, emEstoque: true },
+            { nome: "Calça", preco: 100, emEstoque: true },
+            { nome: "Tênis", preco: 200.458, emEstoque: false },
+            { nome: "Boné", preco: 50, emEstoque: true },
+            { nome: "Jaqueta", preco: 300, emEstoque: false },
+        ];
+
+        const productList = document.getElementById("productList");
+
+        function mostrarProdutos(listaDeProdutos) {
+            productList.innerHTML = "";
+
+            // Formatando a lista de produtos
+            const produtosFormatados = listaDeProdutos.map(produto => {
+                return `Nome: ${produto.nome} - ${produto.preco.toFixed(2)}`
+            })
+
+            // Vamos montar o HTML
+            produtosFormatados.forEach(produto => {
+                const div = document.createElement("div");
+                div.className = "product-item";
+                div.textContent = produto;
+                productList.appendChild(div);
+            })
+
+            // Vamos calcular o valor total dos produtos
+            const valorTotal = listaDeProdutos.reduce((acumulador, produto) => acumulador + produto.preco, 0);
+
+            // Vamos adicionar o valor total no HTML
+            const totalDiv = document.createElement("div");
+            totalDiv.className = "total";
+            totalDiv.textContent = `Total: R$${valorTotal.toFixed(2)}`;
+            productList.appendChild(totalDiv);
+        }
+
+        mostrarProdutos(produtos);
+
+        function filtrarProdutos() {
+            const filtro = document.getElementById("selecionar-produtos").value;
+            if(filtro === "emEstoque"){
+                const produtosDisponiveis = produtos.filter(produto => produto.emEstoque);
+                mostrarProdutos(produtosDisponiveis);
+            }else if(filtro === "foraEstoque"){
+                const produtosForaEstoque = produtos.filter(produto => !produto.emEstoque);
+                mostrarProdutos(produtosForaEstoque);
+            }else{
+                mostrarProdutos(produtos);
+            }
+        }
+
+        function adicionarProduto() {
+            const nome = document.getElementById("nome-produto").value;
+            const preco = document.getElementById("preco-produto").value;
+            const emEstoque = document.getElementById("em-estoque-produto").checked;
+            
+            if(!nome || isNaN(preco)){
+                alert("Preencha o nome e o preço corretamente.");
+                return;
+            }
+            produtos.push({nome, preco: Number(preco), emEstoque});
+
+            nome.value = "";
+            preco.value = "";
+            emEstoque.checked = false;
+
+            filtrarProdutos();
+        }
+    </script>
+</body>
+
+</html>
