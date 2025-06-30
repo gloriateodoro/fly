@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamos praticar eventos!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        button, form, input {
+            margin: 25px 0;
+        }
+        #box {
+            width: 150px;
+            height: 150px;
+            background-color: lightblue;
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">Interaja com os elementos</h1>
+
+    <button id="button">Clique aqui!</button>
+
+    <div id="box">Mouse sobre mim!</div>
+
+    <input type="text" id="input-text" placeholder="Digite algo aqui">
+
+    <form id="myForm">
+        <input type="text" id="input-form" placeholder="Digite seu nome">
+        <input type="password" id="input-password" placeholder="Digite sua senha">
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+
+<script>
+  document.getElementById('button').addEventListener('click', function() {
+    alert('Botão clicado! Event: click!');
+  })
+
+  document.getElementById('box').addEventListener('mouseover', function() {
+    this.style.backgroundColor = 'lightgreen';
+  })
+
+  document.getElementById('box').addEventListener('mouseout', function() {
+    this.style.backgroundColor = 'lightblue';
+  })
+
+  document.getElementById('input-text').addEventListener('input', function() {
+    document.getElementById('title').textContent = this.value;
+  })
+
+  document.getElementById('myForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const inputForm = document.getElementById('input-form');
+    alert('Formulário enviado! Event: submit! Nome: ' + inputForm.value);
+  })
+
+  document.getElementById('input-password').addEventListener('focus', function() {
+    this.style.backgroundColor = 'lightgray';
+  })
+
+  document.getElementById('input-password').addEventListener('blur', function() {
+    this.style.backgroundColor = 'lightblue';
+  })
+
+  document.getElementById("input-text").addEventListener("keyup", function(e) {
+    this.style.backgroundColor = 'yellow';
+  })
+
+</script>
+
+</html>
