@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posso dirigir?</title>
+    <script src="script.js"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Posso dirigir?</h1>
+    <div class="container">
+        <input type="number" id="idade" placeholder="Digite sua idade" oninput="verificarIdadeEmTempoReal()">
+
+        <div>
+            <input type="checkbox" id="temHabilitacao">
+            <label for="temHabilitacao">Tem habilitação?</label>
+        </div>
+
+        <button onclick="verificarIdade()">Verificar</button>
+        <p id="resultado"></p>
+    </div>
+
+</body>
+
+</html>
