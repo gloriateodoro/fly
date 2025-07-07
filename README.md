@@ -1,4 +1,4 @@
-# 🚀 Desafio de Codificação (Mãos à obra!)
+# 🚀 Desafio de Codificação (Pasta -> calculadoraVoo)
 
 Vocês precisam completar o arquivo `script.js` para que a calculadora funcione:
 
