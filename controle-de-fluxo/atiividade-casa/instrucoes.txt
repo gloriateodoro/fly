@@ -1,0 +1,62 @@
+
+Exercício: Avaliador de Desempenho Escolar
+Objetivo: Praticar a criação de funções que utilizam condicionais (if, else if, else) para tomar decisões com base em valores passados como argumentos, sem a necessidade de interação do usuário via input (mas pode fazer, é opcional).
+
+Cenário:
+Você é uma desenvolvedora para uma escola e precisa criar um sistema simples para avaliar o desempenho de alunos(as) e professores(a) com base em suas notas e experiência.
+
+Instruções:
+Crie um arquivo JavaScript (exercicio.js, por exemplo) e escreva as seguintes funções:
+
+1. Função avaliarAluno(nota)
+Descrição: Esta função deve receber a nota final de um(a) aluno(a) (um número de 0 a 100).
+
+Condicionais: Use if, else if, else para determinar e retornar a classificação do(a) aluno(a) de acordo com a nota:
+
+nota >= 90: Retornar a string "Excelente!"
+
+nota >= 70: Retornar a string "Bom!"
+
+nota >= 50: Retornar a string "Regular."
+
+nota < 50: Retornar a string "Insuficiente."
+
+Exemplos de uso (para testar sua função):
+
+JavaScript
+
+console.log("Aluno com nota 95:", avaliarAluno(95)); // Deve retornar "Excelente!"
+console.log("Aluno com nota 70:", avaliarAluno(70)); // Deve retornar "Bom!"
+console.log("Aluno com nota 55:", avaliarAluno(55)); // Deve retornar "Regular."
+console.log("Aluno com nota 40:", avaliarAluno(40)); // Deve retornar "Insuficiente."
+
+2. Função avaliarProfessor(anosExperiencia, avaliacaoAlunos)
+Descrição: Esta função deve receber a quantidade de anosExperiencia do(a) professor(a) (um número inteiro) e a avaliacaoAlunos (uma nota de 0 a 100, média das avaliações dos alunos).
+
+Condicionais (com aninhamento ou operadores lógicos): Use if, else if, else (você pode optar por aninhar ou usar && e ||) para determinar o nível do(a) professor(a):
+
+Se anosExperiencia >= 5:
+
+E avaliacaoAlunos >= 90: Retornar "Professor(a) Sênior Destaque!"
+
+Senão: Retornar "Professor(a) Sênior."
+
+Se anosExperiencia >= 3 (mas menos de 5):
+
+E avaliacaoAlunos >= 80: Retornar "Professor(a) Pleno(a) de Sucesso!"
+
+Senão: Retornar "Professor(a) Pleno(a)."
+
+Se anosExperiencia <= 2:
+
+Retornar "Professor(a) Júnior."
+
+Exemplos de uso (para testar sua função):
+
+JavaScript
+
+console.log("Prof. 1:", avaliarProfessor(5, 92)); // Deve retornar "Professor(a) Sênior Destaque!"
+console.log("Prof. 2:", avaliarProfessor(5, 85)); // Deve retornar "Professor(a) Sênior."
+console.log("Prof. 3:", avaliarProfessor(3, 88));  // Deve retornar "Professor(a) Pleno(a) de Sucesso!"
+console.log("Prof. 4:", avaliarProfessor(3, 60));  // Deve retornar "Professor(a) Pleno(a)."
+console.log("Prof. 5:", avaliarProfessor(2, 75));  // Deve retornar "Professor(a) Júnior."

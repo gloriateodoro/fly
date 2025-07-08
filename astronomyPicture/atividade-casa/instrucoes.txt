@@ -1,0 +1,249 @@
+Atividade de Casa: Explorador de Gatinhos Aleatórios 🐱 (Usando uma API Pública)
+Objetivo: Praticar a integração de HTML, CSS e JavaScript para fazer requisições a uma API pública, exibir os dados retornados e manipular o DOM.
+
+APIs Públicas Sugeridas:
+
+The Cat API: https://api.thecatapi.com/v1/images/search (simples, não requer chave para uso básico).
+
+Dog API: https://dog.ceo/api/breeds/image/random (similar à The Cat API, pode ser uma alternativa se preferir cães).
+
+(Opcional: Para um desafio extra, se quiser explorar mais, a PokeAPI ou a Star Wars API são ótimas, mas um pouco mais complexas para a primeira API call.)
+
+Instruções:
+Dentro dessa pasta crie os seguintes arquivos:
+
+index.html (estrutura da página)
+
+style.css (estilização)
+
+script.js (lógica JavaScript)
+
+Parte 1: Estrutura HTML (index.html)
+Crie a seguinte estrutura HTML básica:
+
+Um título principal (<h1> ou <h2>).
+
+Um parágrafo de introdução.
+
+Um botão (<button>) com o texto "Gerar Novo Gatinho" (ou "Novo Cão"). Dê a ele um id (ex: id="gerarGatinhoBtn") para poder acessá-lo via JavaScript.
+
+Uma área onde a imagem do gatinho será exibida. Pode ser uma tag <img> vazia com um id (ex: id="imagemGatinho") e talvez um alt vazio.
+
+Opcional: Um parágrafo para exibir alguma informação extra do gatinho, se a API fornecer (ex: id="infoGatinho").
+
+Não se esqueça de linkar seu style.css no <head> e seu script.js antes do fechamento do </body>.
+
+HTML
+(tente não olhar agora, apenas depois de tentar hahaha)
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador de Gatinhos 🐾</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Meu Explorador de Gatinhos!</h1>
+        <p>Clique no botão para ver um gatinho aleatório.</p>
+        <button id="gerarGatinhoBtn">Gerar Novo Gatinho</button>
+        <div class="imagem-container">
+            <img id="imagemGatinho" src="" alt="Imagem de um gatinho">
+            <p id="infoGatinho"></p>
+        </div>
+        <p class="loading-message" id="loadingMessage">Carregando gatinho...</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+Parte 2: Estilização Básica (style.css)
+Adicione alguns estilos básicos para deixar a página apresentável. Não precisa ser um super design, apenas o suficiente para organizar os elementos.
+
+Centralize o conteúdo.
+
+Estilize o botão.
+
+Dê uma borda à imagem ou um tamanho máximo.
+
+Esconda a mensagem de carregamento por padrão (display: none;).
+
+CSS
+(tente não olhar agora, apenas depois de tentar hahaha)
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+h1 {
+    color: #333;
+}
+
+button {
+    background-color: #7B68EE; /* Cor roxa */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #6A5ACD; /* Roxo mais escuro */
+}
+
+.imagem-container {
+    margin-top: 20px;
+    min-height: 200px; /* Garante um espaço mínimo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#imagemGatinho {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px; /* Limita a altura para imagens muito grandes */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#infoGatinho {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+.loading-message {
+    color: #888;
+    margin-top: 15px;
+    display: none; /* Escondido por padrão */
+}
+Parte 3: Lógica JavaScript (script.js)
+Esta é a parte principal!
+
+Obter Referências do DOM:
+
+Pegue o botão (gerarGatinhoBtn).
+
+Pegue a tag <img> (imagemGatinho).
+
+Pegue o parágrafo de informação (infoGatinho).
+
+Pegue a mensagem de carregamento (loadingMessage).
+
+Função carregarGatinho():
+Crie uma função assíncrona (usando async/await ou .then()) que fará a chamada à API.
+
+Mostrar Mensagem de Carregamento: Antes de iniciar a requisição, mostre a mensagem de carregamento (loadingMessage.style.display = 'block';) e, opcionalmente, esconda a imagem e as informações antigas.
+
+Fazer Requisição fetch: Use fetch('https://api.thecatapi.com/v1/images/search') para obter os dados.
+
+Processar Resposta:
+
+Converta a resposta para JSON (.json()).
+
+A The Cat API retorna um array de objetos, onde cada objeto tem uma propriedade url com o link da imagem. Você precisará acessar o primeiro elemento do array e sua url (ex: data[0].url).
+
+Exibir Imagem: Defina o src da tag <img> para a URL da imagem do gatinho.
+
+Opcional: Exibir Informação: Se a API retornar mais dados (como id ou width/height), exiba no parágrafo infoGatinho.
+
+Esconder Mensagem de Carregamento: Após carregar a imagem, esconda a mensagem de carregamento.
+
+Tratamento de Erros: Use um bloco try...catch (se usar async/await) ou .catch() (se usar .then()) para lidar com possíveis erros na requisição (ex: falha de rede, API fora do ar). Exiba uma mensagem de erro no console ou na página.
+
+Adicionar Event Listener:
+
+Adicione um event listener de click ao botão. Quando o botão for clicado, ele deve chamar a função carregarGatinho().
+
+Chamar ao Carregar a Página:
+
+Chame a função carregarGatinho() uma vez quando a página carregar (fora de qualquer outra função ou listener) para que um gatinho apareça imediatamente.
+
+JavaScript
+(tente não olhar agora, apenas depois de tentar hahaha)
+
+// 1. Obter Referências do DOM
+const gerarGatinhoBtn = document.getElementById('gerarGatinhoBtn');
+const imagemGatinho = document.getElementById('imagemGatinho');
+const infoGatinho = document.getElementById('infoGatinho');
+const loadingMessage = document.getElementById('loadingMessage');
+
+// Função assíncrona para carregar a imagem do gatinho
+async function carregarGatinho() {
+    // 2. Mostrar Mensagem de Carregamento
+    loadingMessage.style.display = 'block'; // Mostra a mensagem
+    imagemGatinho.src = ''; // Limpa a imagem anterior
+    infoGatinho.textContent = ''; // Limpa a informação anterior
+
+    try {
+        // 3. Fazer Requisição fetch
+        const response = await fetch('https://api.thecatapi.com/v1/images/search');
+
+        // Verificar se a resposta foi bem-sucedida (status 200 OK)
+        if (!response.ok) {
+            throw new Error(`Erro HTTP! Status: ${response.status}`);
+        }
+
+        // Processar Resposta
+        const data = await response.json(); // Converte a resposta para JSON
+        console.log('Dados da API:', data); // Útil para depurar e ver o que a API retorna
+
+        // The Cat API retorna um array de objetos, pegamos o primeiro elemento
+        if (data && data.length > 0 && data[0].url) {
+            // Exibir Imagem
+            imagemGatinho.src = data[0].url;
+            imagemGatinho.alt = "Um gatinho fofo";
+
+            // Opcional: Exibir Informação extra
+            infoGatinho.textContent = `ID: ${data[0].id} | Largura: ${data[0].width}px | Altura: ${data[0].height}px`;
+        } else {
+            infoGatinho.textContent = "Nenhuma imagem de gatinho encontrada.";
+        }
+
+    } catch (error) {
+        // Tratamento de Erros
+        console.error("Erro ao carregar o gatinho:", error);
+        imagemGatinho.src = "https://via.placeholder.com/300?text=Erro"; // Imagem de erro
+        imagemGatinho.alt = "Erro ao carregar imagem";
+        infoGatinho.textContent = "Ops! Não foi possível carregar um gatinho. Tente novamente mais tarde.";
+    } finally {
+        // 4. Esconder Mensagem de Carregamento (sempre executa, com ou sem erro)
+        loadingMessage.style.display = 'none';
+    }
+}
+
+// 5. Adicionar Event Listener ao botão
+gerarGatinhoBtn.addEventListener('click', carregarGatinho);
+
+// 6. Chamar ao Carregar a Página para exibir um gatinho inicial
+carregarGatinho();
+Entrega:
+Peça para as alunas:
+
+Submeterem os três arquivos (index.html, style.css, script.js).
+
+Ou um link para um repositório no GitHub
